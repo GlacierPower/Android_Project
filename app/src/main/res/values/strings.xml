@@ -9,4 +9,8 @@
     <string name="no_data">no data</string>
     <string name="click_me">Click me</string>
     <string name="close_the_app">Close the app</string>
+    <string name="new_Title">New title for MainActivity</string>
+    <string name="show_text">Show text</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_password">Enter your password</string>
 </resources>

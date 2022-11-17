@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.grass)))
-        supportActionBar?.title ="New title for MainActivity"
+        supportActionBar?.title =getString(R.string.new_Title)
         supportActionBar?.setIcon(R.drawable.search)
 
         setContentView(R.layout.activity_main)
