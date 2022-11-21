@@ -23,12 +23,12 @@ class KotlinActivity : AppCompatActivity() {
             "pineapple",
             "watermelon"
         )
-        val adapter = ArrayAdapter(this, R.layout.fruit_item_layout, list)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, list)
         listView.adapter = adapter
     }
 
     companion object {
-        fun start(context: Context) {
+        fun startSec(context: Context) {
             val intent = Intent(context, KotlinActivity::class.java)
             context.startActivity(intent)
         }
