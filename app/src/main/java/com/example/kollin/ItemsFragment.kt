@@ -64,7 +64,7 @@ class ItemsFragment : Fragment(), ItemsListener {
         // now we will use replace and addToBackStack
         parentFragmentManager
             .beginTransaction()
-            .replace(R.id.activityContainer, DetailsFragment())
+            .replace(R.id.activityContainer, detailsFragment)
             .addToBackStack(null)
             .commit()
     }
