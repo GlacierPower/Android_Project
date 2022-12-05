@@ -12,9 +12,11 @@ import com.example.kollin.adapter.ItemsAdapter
 import com.example.kollin.listener.ItemsListener
 import com.example.kollin.model.ItemsModel
 
-class ItemsFragment : Fragment(), ItemsListener {
+class ItemsFragment : Fragment(), ItemsListener, ItemsView {
 
     private lateinit var itemsAdapter: ItemsAdapter
+
+    lateinit var itemsPresenter: ItemsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,32 +28,35 @@ class ItemsFragment : Fragment(), ItemsListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        itemsPresenter = ItemsPresenter(this)
         itemsAdapter = ItemsAdapter(this)
+
         val recycleView = view.findViewById<RecyclerView>(R.id.recycleView)
         recycleView.layoutManager = LinearLayoutManager(context)
         recycleView.adapter = itemsAdapter
 
-        val listItems = listOf<ItemsModel>(
-            ItemsModel(R.drawable.apple, "Android", "20.01.23"),
-            ItemsModel(R.drawable.first, "IOS", "15.02.13"),
-            ItemsModel(R.drawable.second, "Flutter", "14.02.15"),
-            ItemsModel(R.drawable.third, "Python", "16.11.34"),
-            ItemsModel(R.drawable.fourth, "Xamarin", "12.12.61"),
-            ItemsModel(R.drawable.apple, ".NET", "02.10.24"),
-            ItemsModel(R.drawable.first, "C++", "16.09.23"),
-            ItemsModel(R.drawable.second, "C", "11.04.23"),
-            ItemsModel(R.drawable.third, "PHP", "13.07.23"),
-            ItemsModel(R.drawable.fourth, "Ruby on Rails", "14.07.23"),
-            ItemsModel(R.drawable.apple, "JS", "15.07.23")
-        )
-        itemsAdapter.submitList(listItems.toList())
+        itemsPresenter.getDate()
+
     }
 
     override fun onClick() {
-        Toast.makeText(context, "ImageView clicked ", Toast.LENGTH_SHORT).show()
+        itemsPresenter.imageViewClicked()
     }
 
     override fun onElementSelcted(name: String, date: String, imageView: Int) {
+        itemsPresenter.elementSelected(name, date, imageView)
+
+    }
+
+    override fun dataReceive(list: List<ItemsModel>) {
+        itemsAdapter.submitList(list)
+    }
+
+    override fun imageViewClicked(msg: Int) {
+        Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun goDetails(name: String, date: String, imageView: Int) {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
 
