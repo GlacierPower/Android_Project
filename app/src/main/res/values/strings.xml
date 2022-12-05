@@ -7,4 +7,6 @@
     <string name="go_to_details">Go to details</string>
     <string name="you_are_in_fragment_details">YOU ARE IN FRAGMENT DETAILS</string>
     <string name="apple">apple</string>
+    <string name="image_view_clicked">ImageView clicked</string>
+
 </resources>
