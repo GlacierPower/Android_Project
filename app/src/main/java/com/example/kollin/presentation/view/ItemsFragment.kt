@@ -1,4 +1,4 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,11 +8,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kollin.adapter.ItemsAdapter
-import com.example.kollin.listener.ItemsListener
+import com.example.kollin.R
+import com.example.kollin.data.ItemRepositoryImpl
+import com.example.kollin.databinding.FragmentItemsBinding
+import com.example.kollin.databinding.FragmentOnBoardingBinding
+import com.example.kollin.domain.ItemsInteractor
+import com.example.kollin.presentation.adapter.ItemsAdapter
+import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.model.ItemsModel
 
 class ItemsFragment : Fragment(), ItemsListener, ItemsView {
+
+    private var _viewBinding: FragmentItemsBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     private lateinit var itemsAdapter: ItemsAdapter
 
@@ -21,19 +29,18 @@ class ItemsFragment : Fragment(), ItemsListener, ItemsView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_items, container, false)
+    ): View {
+        _viewBinding = FragmentItemsBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemsPresenter = ItemsPresenter(this)
-        itemsAdapter = ItemsAdapter(this)
+        itemsPresenter = ItemsPresenter(this, ItemsInteractor(ItemRepositoryImpl()))
 
-        val recycleView = view.findViewById<RecyclerView>(R.id.recycleView)
-        recycleView.layoutManager = LinearLayoutManager(context)
-        recycleView.adapter = itemsAdapter
+        itemsAdapter = ItemsAdapter(this)
+        viewBinding.recycleView.adapter = itemsAdapter
 
         itemsPresenter.getDate()
 

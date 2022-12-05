@@ -1,4 +1,4 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 import com.example.kollin.model.ItemsModel
 

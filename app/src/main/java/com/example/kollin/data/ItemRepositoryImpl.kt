@@ -1,10 +1,11 @@
-package com.example.kollin
+package com.example.kollin.data
 
+import com.example.kollin.R
+import com.example.kollin.domain.ItemsRepository
 import com.example.kollin.model.ItemsModel
 
-class ItemsPresenter(private val itemsView: ItemsView) {
-
-    fun getDate() {
+class ItemRepositoryImpl : ItemsRepository {
+    override fun getData(): List<ItemsModel> {
         val listItems = listOf<ItemsModel>(
             ItemsModel(R.drawable.apple, "Android", "20.01.23"),
             ItemsModel(R.drawable.first, "IOS", "15.02.13"),
@@ -18,14 +19,6 @@ class ItemsPresenter(private val itemsView: ItemsView) {
             ItemsModel(R.drawable.fourth, "Ruby on Rails", "14.07.23"),
             ItemsModel(R.drawable.apple, "JS", "15.07.23")
         )
-        itemsView.dataReceive(listItems)
-    }
-
-    fun imageViewClicked() {
-        itemsView.imageViewClicked(R.string.imageViewClicked)
-    }
-
-    fun elementSelected(name: String, date: String, imageView: Int) {
-        itemsView.goDetails(name, date, imageView)
+        return listItems
     }
 }

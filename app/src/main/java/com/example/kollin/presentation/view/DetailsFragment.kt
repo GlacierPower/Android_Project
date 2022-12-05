@@ -1,4 +1,4 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 
 import android.os.Bundle
@@ -8,33 +8,36 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.kollin.R
+import com.example.kollin.databinding.FragmentDetailsBinding
+import com.example.kollin.databinding.FragmentOnBoardingBinding
 
 class DetailsFragment : Fragment() {
+
+    private var _viewBinding: FragmentDetailsBinding? = null
+    private  val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_details, container, false)
+    ): View {
+        _viewBinding = FragmentDetailsBinding.inflate(inflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val detailsName = view.findViewById<TextView>(R.id.detailsName)
-        val detailsDate = view.findViewById<TextView>(R.id.detailsDate)
-        val detailsImage = view.findViewById<ImageView>(R.id.detailsImage)
 
         val bundle = arguments
-
         bundle?.let { safeBundle->
             val name = safeBundle.getString("name")
             val date= safeBundle.getString("date")
             val image = safeBundle.getInt("imageView")
 
-            detailsName.text = name
-            detailsDate.text = date
-            detailsImage.setBackgroundResource(image)
+            viewBinding.detailsName.text = name
+            viewBinding.detailsDate.text = date
+            viewBinding.detailsImage.setBackgroundResource(image)
         }
 
 
