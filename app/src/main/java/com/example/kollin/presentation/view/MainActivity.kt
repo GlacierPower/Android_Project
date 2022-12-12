@@ -1,7 +1,8 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kollin.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragmentTransaction  = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.activityContainer,OnBoardingFragment())
+        fragmentTransaction.add(R.id.activityContainer, OnBoardingFragment())
         fragmentTransaction.commit()
 
     }

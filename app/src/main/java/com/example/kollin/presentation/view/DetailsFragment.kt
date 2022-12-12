@@ -1,4 +1,4 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 
 import android.os.Bundle
@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.kollin.BundleConstance.DATE
-import com.example.kollin.BundleConstance.IMAGE_VIEW
-import com.example.kollin.ItemsFragment.Companion.NAME
+import com.example.kollin.until.BundleConstance.DATE
+import com.example.kollin.until.BundleConstance.IMAGE_VIEW
+import com.example.kollin.presentation.view.ItemsFragment.Companion.NAME
+import com.example.kollin.R
 
 class DetailsFragment : Fragment() {
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kollin.model.ItemsModel
 
-class ItemsViewModel(private  val testParametr: TestParametr) : ViewModel() {
+class ItemsViewModel(private val testParametr: TestParametr) : ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsModel>>()
     val items: LiveData<List<ItemsModel>> = _items

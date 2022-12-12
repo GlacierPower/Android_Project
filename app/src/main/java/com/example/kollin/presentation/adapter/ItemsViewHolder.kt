@@ -1,4 +1,4 @@
-package com.example.kollin.adapter
+package com.example.kollin.presentation.adapter
 
 import android.view.View
 import android.widget.ImageView

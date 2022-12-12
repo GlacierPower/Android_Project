@@ -1,4 +1,4 @@
-package com.example.kollin
+package com.example.kollin.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kollin.BundleConstance.DATE
-import com.example.kollin.BundleConstance.IMAGE_VIEW
-import com.example.kollin.adapter.ItemsAdapter
+import com.example.kollin.ItemsViewModel
+import com.example.kollin.R
+import com.example.kollin.TestParametr
+import com.example.kollin.until.BundleConstance.DATE
+import com.example.kollin.until.BundleConstance.IMAGE_VIEW
+import com.example.kollin.presentation.adapter.ItemsAdapter
 import com.example.kollin.listener.ItemsListener
-import com.example.kollin.model.MyViewModelFactory
 
 
 class ItemsFragment : Fragment(), ItemsListener {
