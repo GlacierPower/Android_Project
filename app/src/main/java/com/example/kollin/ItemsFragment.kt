@@ -13,13 +13,16 @@ import com.example.kollin.BundleConstance.DATE
 import com.example.kollin.BundleConstance.IMAGE_VIEW
 import com.example.kollin.adapter.ItemsAdapter
 import com.example.kollin.listener.ItemsListener
+import com.example.kollin.model.MyViewModelFactory
 
 
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels()
+    private val viewModel: ItemsViewModel by viewModels{
+        MyViewModelFactory(TestParametr())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
