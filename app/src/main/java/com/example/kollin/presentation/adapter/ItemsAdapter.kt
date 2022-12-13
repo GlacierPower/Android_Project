@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kollin.R
-import com.example.kollin.listener.ItemsListener
+import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.model.ItemsModel
 
-class ItemsAdapter(private  val itemListener:ItemsListener
+class ItemsAdapter(private  val itemListener: ItemsListener
 ) : RecyclerView.Adapter<ItemsViewHolder>() {
 
     private var listItems = mutableListOf<ItemsModel>()

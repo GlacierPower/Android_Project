@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kollin.R
-import com.example.kollin.listener.ItemsListener
+import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.model.ItemsModel
 
 

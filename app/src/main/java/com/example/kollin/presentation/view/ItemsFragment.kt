@@ -1,29 +1,29 @@
 package com.example.kollin.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kollin.ItemsViewModel
 import com.example.kollin.R
-import com.example.kollin.TestParametr
+import com.example.kollin.data.ItemsRepositoryImpl
+import com.example.kollin.presentation.adapter.ItemsAdapter
+import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.until.BundleConstance.DATE
 import com.example.kollin.until.BundleConstance.IMAGE_VIEW
-import com.example.kollin.presentation.adapter.ItemsAdapter
-import com.example.kollin.listener.ItemsListener
+import com.example.kollin.until.NavigationOnFragment
 
 
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels{
-        MyViewModelFactory(TestParametr())
+    private val viewModel: ItemsViewModel by viewModels {
+        MyViewModelFactory(ItemsRepositoryImpl())
     }
 
     override fun onCreateView(
@@ -58,11 +58,11 @@ class ItemsFragment : Fragment(), ItemsListener {
                 bundle.putInt(IMAGE_VIEW, navBundle.image)
                 detailsFragment.arguments = bundle
 
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activityContainer, detailsFragment)
-                    .addToBackStack("Details")
-                    .commit()
+                NavigationOnFragment.replaceFragment(
+                    parentFragmentManager,
+                    detailsFragment,
+                    true
+                )
 
                 //in the end of our action
                 viewModel.userNavigated()

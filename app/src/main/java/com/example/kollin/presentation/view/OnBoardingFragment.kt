@@ -1,20 +1,20 @@
 package com.example.kollin.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.kollin.R
 import com.example.kollin.databinding.FragmentOnBoardingBinding
+import com.example.kollin.until.NavigationOnFragment
 
 class OnBoardingFragment : Fragment() {
 
     private val viewModel: OnBoardingViewModel by viewModels()
 
     private var _binding: FragmentOnBoardingBinding? = null
-    val binding: FragmentOnBoardingBinding get() = _binding!!
+    private val binding: FragmentOnBoardingBinding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +32,11 @@ class OnBoardingFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activityContainer, ItemsFragment())
-                    .commit()
+                NavigationOnFragment.replaceFragment(
+                    parentFragmentManager,
+                    ItemsFragment(),
+                    false
+                )
                 viewModel.finishPerformed()
             }
         }

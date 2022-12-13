@@ -2,43 +2,43 @@ package com.example.kollin.presentation.view
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.kollin.databinding.FragmentDetailsBinding
+import com.example.kollin.presentation.view.ItemsFragment.Companion.NAME
 import com.example.kollin.until.BundleConstance.DATE
 import com.example.kollin.until.BundleConstance.IMAGE_VIEW
-import com.example.kollin.presentation.view.ItemsFragment.Companion.NAME
-import com.example.kollin.R
 
 class DetailsFragment : Fragment() {
+
+    private var _viewBinding: FragmentDetailsBinding? = null
+    private val viewBinding get() = _viewBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        _viewBinding = FragmentDetailsBinding.inflate(inflater)
+        return viewBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val detailsName = view.findViewById<TextView>(R.id.detailsName)
-        val detailsDate = view.findViewById<TextView>(R.id.detailsDate)
-        val detailsImage = view.findViewById<ImageView>(R.id.detailsImage)
 
         val bundle = arguments
 
-        bundle?.let { safeBundle->
+        bundle?.let { safeBundle ->
             val name = safeBundle.getString(NAME)
-            val date= safeBundle.getString(DATE)
+            val date = safeBundle.getString(DATE)
             val image = safeBundle.getInt(IMAGE_VIEW)
 
-            detailsName.text = name
-            detailsDate.text = date
-            detailsImage.setBackgroundResource(image)
+            viewBinding?.detailsName?.text = name
+            viewBinding?.detailsDate?.text = date
+            viewBinding?.detailsImage?.setBackgroundResource(image)
         }
 
 
