@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import com.example.kollin.databinding.FragmentOnBoardingBinding
 import com.example.kollin.until.NavigationOnFragment
 
-class OnBoardingFragment : Fragment() {
+class OnBoardingFragment : Fragment()  {
 
     private val viewModel: OnBoardingViewModel by viewModels()
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
+
+    val onBoardingText = MutableLiveData<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

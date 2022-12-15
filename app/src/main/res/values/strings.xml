@@ -8,5 +8,11 @@
     <string name="you_are_in_fragment_details">YOU ARE IN FRAGMENT DETAILS</string>
     <string name="apple">apple</string>
     <string name="image_view_clicked">ImageView clicked</string>
+    <string name="login">Login</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_username">Enter username</string>
+    <string name="some_text">Some text</string>
+    <string name="go_to_onboarding">Go to OnBoarding</string>
 
 </resources>

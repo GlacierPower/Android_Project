@@ -22,7 +22,7 @@
             android:id="@+id/textView"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="@string/on_boarding"
+            android:text="@={viewModel.onBoardingText}"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
