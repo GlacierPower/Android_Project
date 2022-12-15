@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.kollin.databinding.FragmentLoginBinding
 import com.example.kollin.presentation.view.OnBoardingFragment
-import com.example.kollin.until.NavigationOnFragment
 import com.example.kollin.until.NavigationOnFragment.replaceFragment
 
 

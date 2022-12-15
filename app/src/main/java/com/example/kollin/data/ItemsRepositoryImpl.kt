@@ -3,8 +3,10 @@ package com.example.kollin.data
 import com.example.kollin.R
 import com.example.kollin.domain.ItemsRepository
 import com.example.kollin.model.ItemsModel
+import javax.inject.Inject
 
-class ItemsRepositoryImpl: ItemsRepository {
+
+class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {
     override fun getData(): List<ItemsModel> {
         return listOf(
             ItemsModel(

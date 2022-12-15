@@ -16,15 +16,14 @@ import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.until.BundleConstance.DATE
 import com.example.kollin.until.BundleConstance.IMAGE_VIEW
 import com.example.kollin.until.NavigationOnFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ItemsFragment : Fragment(), ItemsListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels {
-        MyViewModelFactory(ItemsRepositoryImpl())
-    }
+    private val viewModel: ItemsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

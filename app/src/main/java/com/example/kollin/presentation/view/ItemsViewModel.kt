@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kollin.R
-import com.example.kollin.data.ItemsRepositoryImpl
+import com.example.kollin.domain.ItemsInteractor
 import com.example.kollin.model.ItemsModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ItemsViewModel(private val carsRepositoryImpl: ItemsRepositoryImpl) : ViewModel() {
+@HiltViewModel
+class ItemsViewModel @Inject constructor(private val intaractor: ItemsInteractor) : ViewModel() {
 
     private val _items = MutableLiveData<List<ItemsModel>>()
     val items: LiveData<List<ItemsModel>> = _items
@@ -20,7 +23,7 @@ class ItemsViewModel(private val carsRepositoryImpl: ItemsRepositoryImpl) : View
 
     fun getData() {
 
-        _items.value = carsRepositoryImpl.getData()
+        _items.value = intaractor.getDate()
     }
 
     fun imageViewClicked() {
