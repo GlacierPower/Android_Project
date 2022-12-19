@@ -1,4 +1,4 @@
-package com.example.kollin.until
+package com.example.kollin.utils
 
 object BundleConstance {
     const val IMAGE_VIEW = "imageView"

@@ -1,10 +1,10 @@
-package com.example.kollin.presentation.view
+package com.example.kollin.presentation.view.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kollin.R
-import com.example.kollin.domain.ItemsInteractor
+import com.example.kollin.domain.Items.ItemsInteractor
 import com.example.kollin.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

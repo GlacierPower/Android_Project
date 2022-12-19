@@ -1,4 +1,4 @@
-package com.example.kollin.presentation.view
+package com.example.kollin.presentation.view.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kollin.R
-import com.example.kollin.data.ItemsRepositoryImpl
 import com.example.kollin.presentation.adapter.ItemsAdapter
 import com.example.kollin.presentation.adapter.listener.ItemsListener
-import com.example.kollin.until.BundleConstance.DATE
-import com.example.kollin.until.BundleConstance.IMAGE_VIEW
-import com.example.kollin.until.NavigationOnFragment
+import com.example.kollin.utils.BundleConstance.DATE
+import com.example.kollin.utils.BundleConstance.IMAGE_VIEW
+import com.example.kollin.utils.NavigationOnFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

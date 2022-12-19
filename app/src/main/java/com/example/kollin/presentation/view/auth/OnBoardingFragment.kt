@@ -1,4 +1,4 @@
-package com.example.kollin.presentation.view
+package com.example.kollin.presentation.view.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.kollin.databinding.FragmentOnBoardingBinding
-import com.example.kollin.until.NavigationOnFragment
+import com.example.kollin.presentation.view.home.ItemsFragment
+import com.example.kollin.utils.NavigationOnFragment
 
 class OnBoardingFragment : Fragment()  {
 

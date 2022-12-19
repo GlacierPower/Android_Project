@@ -1,7 +1,7 @@
-package com.example.kollin.data
+package com.example.kollin.data.items
 
 import com.example.kollin.R
-import com.example.kollin.domain.ItemsRepository
+import com.example.kollin.domain.Items.ItemsRepository
 import com.example.kollin.model.ItemsModel
 import javax.inject.Inject
 

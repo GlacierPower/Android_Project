@@ -1,9 +1,9 @@
-package com.example.kollin.presentation.view
+package com.example.kollin.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.kollin.data.ItemsRepositoryImpl
-import com.example.kollin.domain.ItemsInteractor
+import com.example.kollin.domain.Items.ItemsInteractor
+import com.example.kollin.presentation.view.home.ItemsViewModel
 
 
 class MyViewModelFactory(private val itemsInteractor: ItemsInteractor) :

@@ -1,4 +1,4 @@
-package com.example.kollin.domain
+package com.example.kollin.domain.Items
 
 import com.example.kollin.model.ItemsModel
 

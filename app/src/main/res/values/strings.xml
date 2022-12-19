@@ -14,5 +14,6 @@
     <string name="enter_username">Enter username</string>
     <string name="some_text">Some text</string>
     <string name="go_to_onboarding">Go to OnBoarding</string>
+    <string name="logout">LogOut</string>
 
 </resources>
