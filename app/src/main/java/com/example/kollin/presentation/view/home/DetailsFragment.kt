@@ -14,14 +14,16 @@ import com.example.kollin.utils.BundleConstance.DATE
 import com.example.kollin.utils.BundleConstance.IMAGE_VIEW
 import com.example.kollin.utils.NavigationOnFragment.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), DetailsView {
 
     private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private val viewModel: DetailsViewModel by viewModels()
+    @Inject
+    lateinit var detailsPresenter: DetailsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,27 +36,39 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        detailsPresenter.setView(this)
 
         val bundle = arguments
-
         bundle?.let { safeBundle ->
-            val name = safeBundle.getString(NAME)
-            val date = safeBundle.getString(DATE)
-            val image = safeBundle.getInt(IMAGE_VIEW)
-
-            viewBinding.detailsName.text = name
-            viewBinding.detailsDate.text = date
-            viewBinding.detailsImage.setBackgroundResource(image)
-        }
-        viewBinding.btnLogOut.setOnClickListener {
-            viewModel.logoutUser()
-        }
-        viewModel.nav.observe(viewLifecycleOwner) {
-            replaceFragment(
-                parentFragmentManager,
-                LogFragment(),
-                false
+            detailsPresenter.getArguments(
+                safeBundle.getString(NAME),
+                safeBundle.getString(DATE),
+                safeBundle.getInt(IMAGE_VIEW)
             )
         }
+
+
+        viewBinding.btnLogOut.setOnClickListener {
+            detailsPresenter.logoutUser()
+        }
+
+
+    }
+
+    override fun userLoggedOut() {
+        replaceFragment(
+            parentFragmentManager,
+            LogFragment(),
+            false
+        )
+    }
+
+
+    override fun displayItemData(name: String, date: String, imageView: Int) {
+
+        viewBinding.detailsName.text = name
+        viewBinding.detailsDate.text = date
+        viewBinding.detailsImage.setBackgroundResource(imageView)
+
     }
 }

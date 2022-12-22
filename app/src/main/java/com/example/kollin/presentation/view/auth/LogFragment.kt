@@ -13,13 +13,15 @@ import com.example.kollin.databinding.FragmentLoginBinding
 import com.example.kollin.presentation.view.home.HomeFragment
 import com.example.kollin.utils.NavigationOnFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LogFragment : Fragment() {
+class LogFragment : Fragment(), LoginView {
     private var _binding: FragmentLogBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels()
+    @Inject
+    lateinit var loginPresenter: LoginPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,19 +34,26 @@ class LogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loginPresenter.setView(this)
+
         binding.login.setOnClickListener {
-            viewModel.loginUser(
+            loginPresenter.loginUser(
                 binding.username.text.toString(),
                 binding.password.text.toString()
             )
         }
-        viewModel.nav.observe(viewLifecycleOwner) {
-            NavigationOnFragment.replaceFragment(
-                parentFragmentManager,
-                HomeFragment(),
-                false
-            )
-        }
+
+
+
+    }
+
+    override fun userLoggedIn() {
+        NavigationOnFragment.replaceFragment(
+            parentFragmentManager,
+            HomeFragment(),
+            false
+        )
     }
 
 }

@@ -15,5 +15,6 @@
     <string name="some_text">Some text</string>
     <string name="go_to_onboarding">Go to OnBoarding</string>
     <string name="logout">LogOut</string>
+    <string name="welcome">Welcome</string>
 
 </resources>

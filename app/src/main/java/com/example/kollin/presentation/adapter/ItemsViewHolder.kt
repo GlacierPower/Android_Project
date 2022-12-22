@@ -22,14 +22,15 @@ class ItemsViewHolder(
         imageView.setBackgroundResource(itemsModel.image)
         date.text = itemsModel.date
 
-        imageView.setOnClickListener{
+        imageView.setOnClickListener {
             itemListener.onClick()
         }
         itemView.setOnClickListener {
-            itemListener.onElementSelcted(itemsModel.name,
-            itemsModel.date,
-            itemsModel.image
-                )
+            itemListener.onElementSelected(
+                itemsModel.name,
+                itemsModel.date,
+                itemsModel.image
+            )
         }
     }
 }

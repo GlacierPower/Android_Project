@@ -6,5 +6,5 @@ interface ItemsListener {
 
     fun onClick()
 
-    fun onElementSelcted(name:String,date:String,imageView:Int)
+    fun onElementSelected(name:String,date:String,imageView:Int)
 }

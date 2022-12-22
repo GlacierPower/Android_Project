@@ -5,24 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import com.example.kollin.databinding.FragmentOnBoardingBinding
 import com.example.kollin.presentation.view.home.ItemsFragment
 import com.example.kollin.utils.NavigationOnFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class OnBoardingFragment : Fragment()  {
-
-    private val viewModel: OnBoardingViewModel by viewModels()
+@AndroidEntryPoint
+class OnBoardingFragment : Fragment(), OnBoardingView {
 
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding: FragmentOnBoardingBinding get() = _binding!!
 
-    val onBoardingText = MutableLiveData<String>()
+    @Inject
+    lateinit var onBoardingPresenter: OnBoardingPresenter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         return binding.root
@@ -31,19 +30,21 @@ class OnBoardingFragment : Fragment()  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        onBoardingPresenter.setView(this)
 
-        viewModel.nav.observe(viewLifecycleOwner) {
-            if (it != null) {
-                NavigationOnFragment.replaceFragment(
-                    parentFragmentManager,
-                    ItemsFragment(),
-                    false
-                )
-                viewModel.finishPerformed()
-            }
+        binding.btnFinish.setOnClickListener {
+            onBoardingPresenter.goToItemsFragment()
         }
+
+    }
+
+    override fun goToItemsFragment() {
+        NavigationOnFragment.replaceFragment(
+            parentFragmentManager,
+            ItemsFragment(),
+            false
+        )
     }
 }
+
 
