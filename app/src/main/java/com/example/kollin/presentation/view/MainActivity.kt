@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.kollin.R
 import com.example.kollin.databinding.ActivityMainBinding
-import com.example.kollin.presentation.view.auth.LogFragment
-import com.example.kollin.presentation.view.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,22 +17,22 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(_binding!!.root)
 
         viewModel.checkExists()
-        viewModel.userExists.observe(this){
-            val fragmentTransaction = supportFragmentManager
-                .beginTransaction()
-            fragmentTransaction.add(R.id.activityContainer,
-                when(it){
-                    true->HomeFragment()
-                    false->LogFragment()
-                }
-            )
-            fragmentTransaction.commit()
+
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.fragmentContainerView
+        ) as NavHostFragment
+
+        navController = navHostFragment.navController
+        viewModel.nav.observe(this) {
+            navController.setGraph(it)
         }
 
     }

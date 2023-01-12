@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.kollin.R
 import com.example.kollin.databinding.FragmentDetailsBinding
-import com.example.kollin.presentation.view.auth.LogFragment
 import com.example.kollin.presentation.view.home.ItemsFragment.Companion.NAME
 import com.example.kollin.utils.BundleConstance.DATE
 import com.example.kollin.utils.BundleConstance.IMAGE_VIEW
-import com.example.kollin.utils.NavigationOnFragment.replaceFragment
+import com.example.kollin.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _viewBinding = FragmentDetailsBinding.inflate(inflater)
         return viewBinding.root
     }
@@ -50,11 +51,9 @@ class DetailsFragment : Fragment() {
             viewModel.logoutUser()
         }
         viewModel.nav.observe(viewLifecycleOwner) {
-            replaceFragment(
-                parentFragmentManager,
-                LogFragment(),
-                false
-            )
+            if (it != null) {
+                replaceGraph(it)
+            }
         }
     }
 }

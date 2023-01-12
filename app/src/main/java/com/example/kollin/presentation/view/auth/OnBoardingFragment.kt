@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.example.kollin.R
 import com.example.kollin.databinding.FragmentOnBoardingBinding
-import com.example.kollin.presentation.view.home.ItemsFragment
-import com.example.kollin.utils.NavigationOnFragment
+import com.example.kollin.utils.NavHelper.navigate
+import com.example.kollin.utils.NavHelper.navigateWithBundle
+import com.example.kollin.utils.NavHelper.navigateWithDeletedBackStack
 
-class OnBoardingFragment : Fragment()  {
+class OnBoardingFragment : Fragment() {
 
     private val viewModel: OnBoardingViewModel by viewModels()
 
@@ -36,11 +40,9 @@ class OnBoardingFragment : Fragment()  {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                NavigationOnFragment.replaceFragment(
-                    parentFragmentManager,
-                    ItemsFragment(),
-                    false
-                )
+                val navOption = NavOptions.Builder()
+                navOption.setPopUpTo(R.id.onBoardingFragment, true)
+                navigateWithDeletedBackStack(it.destinationID, it.removeFragmentID)
                 viewModel.finishPerformed()
             }
         }

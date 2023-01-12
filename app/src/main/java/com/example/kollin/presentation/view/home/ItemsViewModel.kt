@@ -1,5 +1,6 @@
 package com.example.kollin.presentation.view.home
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +35,8 @@ class ItemsViewModel @Inject constructor(private val intaractor: ItemsInteractor
         _bundle.value = NavigateWithBundle(
             name = name,
             date = date,
-            image = imageView
+            image = imageView,
+            destinationID = R.id.action_itemsFragment_to_detailsFragment
         )
     }
 
@@ -46,6 +48,9 @@ class ItemsViewModel @Inject constructor(private val intaractor: ItemsInteractor
 data class NavigateWithBundle(
     val image: Int,
     val name: String,
-    val date: String
+    val date: String,
+    val destinationID :Int
 )
+
+
 

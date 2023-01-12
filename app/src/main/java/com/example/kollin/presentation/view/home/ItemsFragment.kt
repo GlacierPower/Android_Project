@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kollin.R
@@ -14,7 +15,8 @@ import com.example.kollin.presentation.adapter.ItemsAdapter
 import com.example.kollin.presentation.adapter.listener.ItemsListener
 import com.example.kollin.utils.BundleConstance.DATE
 import com.example.kollin.utils.BundleConstance.IMAGE_VIEW
-import com.example.kollin.utils.NavigationOnFragment
+import com.example.kollin.utils.NavHelper.navigate
+import com.example.kollin.utils.NavHelper.navigateWithBundle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,20 +50,16 @@ class ItemsFragment : Fragment(), ItemsListener {
         }
         viewModel.bundle.observe(viewLifecycleOwner) { navBundle ->
             if (navBundle != null) {
-                val detailsFragment = DetailsFragment()
                 val bundle = Bundle()
 
                 bundle.putString(NAME, navBundle.name)
                 bundle.putString(DATE, navBundle.date)
                 bundle.putInt(IMAGE_VIEW, navBundle.image)
-                detailsFragment.arguments = bundle
 
-                NavigationOnFragment.replaceFragment(
-                    parentFragmentManager,
-                    detailsFragment,
-                    true
+                navigateWithBundle(
+                    navBundle.destinationID,
+                    bundle
                 )
-
                 //in the end of our action
                 viewModel.userNavigated()
             }

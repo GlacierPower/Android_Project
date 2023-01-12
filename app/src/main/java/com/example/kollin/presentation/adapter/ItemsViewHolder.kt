@@ -18,6 +18,7 @@ class ItemsViewHolder(
         val date = view.findViewById<TextView>(R.id.tv_date)
         val imageView = view.findViewById<ImageView>(R.id.iv_name)
 
+
         name.text = itemsModel.name
         imageView.setBackgroundResource(itemsModel.image)
         date.text = itemsModel.date

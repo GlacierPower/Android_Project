@@ -1,17 +1,16 @@
 package com.example.kollin.presentation.view.auth
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.kollin.R
-import com.example.kollin.databinding.FragmentHomeBinding
 import com.example.kollin.databinding.FragmentLogBinding
-import com.example.kollin.databinding.FragmentLoginBinding
-import com.example.kollin.presentation.view.home.HomeFragment
-import com.example.kollin.utils.NavigationOnFragment
+import com.example.kollin.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +38,10 @@ class LogFragment : Fragment() {
             )
         }
         viewModel.nav.observe(viewLifecycleOwner) {
-            NavigationOnFragment.replaceFragment(
-                parentFragmentManager,
-                HomeFragment(),
-                false
-            )
+            if (it != null) {
+                navigate(it)
+                viewModel.userNavigated()
+            }
         }
     }
 
